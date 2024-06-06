@@ -6,6 +6,7 @@ require('dotenv').config()
 
 var app = express();
 
+var routerApidocs = require('./routes/router_apidocs');
 var routerArtista = require('./routes/router_artista');
 
 const url = process.env.MONGODB_URL
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+app.use('/api-docs', routerApidocs);
 app.use('/artista', routerArtista);
 
 module.exports = app;

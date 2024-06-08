@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post('/', controllerArtista.validarDados, controllerArtista.criar);
 router.get('/', controllerArtista.listarTodos)
-router.get('/:id', controllerArtista.buscarId)
+router.get('/:id', controllerArtista.buscarId, controllerArtista.buscar)
 router.put(
   '/:id',
   controllerArtista.buscarId,

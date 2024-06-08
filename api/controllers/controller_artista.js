@@ -25,6 +25,7 @@ async function listarTodos(req, res) {
 async function buscarId(req, res, next) {
     try{
         const id = new mongoose.Types.ObjectId(req.params.id);
+        console.log(id)
         const artista = await Artista.findOne({_id:id});
             if(artista){
                 next()

@@ -3,12 +3,12 @@ info:
   title: API Artistas
   version: 1.0
 tags:
-  - artistas
+  - artista
 paths:
-  /artistas:
+  /artista:
     post:
       tags:
-        - artistas
+        - artista
       requestBody:
         content:
           application/json:

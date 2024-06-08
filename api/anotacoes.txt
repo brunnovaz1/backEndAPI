@@ -1,0 +1,3 @@
+MONGODB_URL= mongodb+srv://brunnovaz:admin1107@cluster0.t1pzmfx.mongodb.net/artista
+PORT = 3000
+SEGREDO = projetoAPI

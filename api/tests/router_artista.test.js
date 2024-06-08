@@ -24,12 +24,13 @@ describe("API Artista", () => {
         const response = await request.get("/artista");
         expect(response.status).toBe(200);
         expect(response.type).toBe('application/json');
+
     })
 
     test('Deve retornar 200 e um JSON no GET /artista/id', async() => {
-        const response = await request.get(("/artista/6661c96c62545e0a1d017bf5"));
+        const response = await request.get(`/artista/${id}`);
         expect(response.status).toBe(200);
-        expect(response.type).toBe('application/json');
+        expect(response.type).toBe("application/json");
     })
 
     test('Deve retornar 404 e um JSON no GET/artista/id', async() => {

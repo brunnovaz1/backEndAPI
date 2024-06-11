@@ -70,6 +70,3 @@ Sinta-se à vontade para contribuir com novos recursos, correções de bugs ou m
 
 Para mais detalhes sobre cada endpoint e os parâmetros suportados, consulte a [Documentação da API](http://localhost:3000/swagger).
 
-## Licença
-
-Este projeto está licenciado sob a [MIT License](LICENSE).

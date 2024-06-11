@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 
 const musicaSchema = new mongoose.Schema({
-    titulo: { type: String, trim: true, required:true },
+    titulo: { type: String, required:true },
     autor: { type: String },
     genero: {type: String}
 })

@@ -8,9 +8,9 @@ const router = express.Router();
 
 router.post('/', controllerMusica.validarDados, controllerMusica.criar);
 
-router.get('/', controllerMusica.obterTodos)
+router.get('/', controllerMusica.obterTodos);
 
-router.get('/:id', controllerMusica.buscarPeloId, controllerMusica.obter)
+router.get('/:id', controllerMusica.buscarPeloId, controllerMusica.obter);
 
 router.put(
     "/:id",
@@ -19,7 +19,7 @@ router.put(
     controllerMusica.atualizar
   );
 
-router.delete ('/:id', controllerMusica.buscarPeloId, controllerMusica.remover)
+router.delete ('/:id', controllerMusica.buscarPeloId, controllerMusica.remover);
   
 
 module.exports = router;

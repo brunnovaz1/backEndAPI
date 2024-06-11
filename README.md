@@ -56,7 +56,20 @@ Este comando iniciará o servidor local na porta definida no arquivo .env.
 Para executar os testes, utilize o seguinte comando:
 
 ```
+
 npm run test
 ```
 
 Isso executará os testes automatizados para garantir o correto funcionamento da API.
+
+## Contribuição
+
+Sinta-se à vontade para contribuir com novos recursos, correções de bugs ou melhorias. Abra uma issue ou envie um pull request e teremos prazer em revisar.
+
+## Documentação
+
+Para mais detalhes sobre cada endpoint e os parâmetros suportados, consulte a [Documentação da API](http://localhost:3000/swagger).
+
+## Licença
+
+Este projeto está licenciado sob a [MIT License](LICENSE).

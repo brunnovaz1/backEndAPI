@@ -34,6 +34,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ArrayOfMusicas'
+      security:
+        - JWTAuth: []
   /musicas/{id}:
     get:
       tags:

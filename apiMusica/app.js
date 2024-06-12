@@ -8,11 +8,11 @@ var app = express();
 var routesApiMusica = require('./routes/routes_api-musica');
 var routesMusica = require('./routes/routes_musica');
 
-const url = process.env.URLDB
+const url = process.env.MONGODB_URL
 
 const mongoose = require('mongoose')
 
-mongoose.connect(process.env.URLDB)
+mongoose.connect(process.env.MONGODB_URL)
 
 //app.use(logger('dev'));
 app.use(express.json());

@@ -1,6 +1,6 @@
 const express = require('express');
 
-//const validarToken = require('../middlewares/auth')
+const validarToken = require('../middlewares/auth')
 
 const controllerMusica = require('../controllers/controller_musica');
 
@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.post('/', controllerMusica.validarDados, controllerMusica.criar);
 
-router.get('/', controllerMusica.obterTodos);
+router.get('/',validarToken, controllerMusica.obterTodos);
 
 router.get('/:id', controllerMusica.buscarPeloId, controllerMusica.obter);
 

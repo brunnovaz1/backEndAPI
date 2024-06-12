@@ -34,6 +34,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ArrayOfAristas'
+      security:
+        - JWTAuth: []
   /artista/{id}:
     get:
       tags:
@@ -111,6 +113,11 @@ paths:
                 $ref: '#/components/schemas/Mensagem'    
 
 components:
+  securitySchemes:
+    JWTAuth:
+      type: apiKey
+      in: header
+      name: Authorization
   schemas:
     ArrayOfArtistas:
       type: array

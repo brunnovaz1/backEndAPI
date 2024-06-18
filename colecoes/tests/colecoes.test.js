@@ -1,13 +1,8 @@
 const supertest = require('supertest');
 const app = require('../app');
 const request = supertest(app);
-
-
-
-
-
-
 let id = null;
+
 
 describe("API de Coleções de Músicas", () => {
 
@@ -110,7 +105,8 @@ describe("API de Coleções de Músicas", () => {
 
 });
 
-// Total de 10 testes
+
+// ------ Total de 10 testes ------ 
 
 // API de Coleções de Músicas
 // √ Deve retornar 201 e um JSON no POST /colecoes 
@@ -123,6 +119,3 @@ describe("API de Coleções de Músicas", () => {
 // √ Deve retornar 422 e um JSON no PUT /colecoes                                                                                                                                                                                   
 // √ Deve retornar 204 e sem corpo no DELETE /colecoes/id                                                                                                                                                                           
 // √ Deve retornar 404 e sem corpo no DELETE /colecoes/id 
-
-
-

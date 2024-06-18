@@ -13,3 +13,5 @@ function validarToken(req, res, next) {
     res.status(400).json({msg: 'token inválido!'})
     }
 }
+
+module.exports = validarToken

@@ -33,7 +33,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ArrayOfAristas'
+                $ref: '#/components/schemas/ArrayOfArtistas'
       security:
         - JWTAuth: []
   /artista/{id}:

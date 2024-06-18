@@ -1,0 +1,221 @@
+openapi: 3.0.0
+info:
+  title: API de Coleções de Músicas
+  version: 0.0.1
+  description: API para gerenciar coleções de músicas
+servers:
+  - url: http://localhost:3000
+
+
+
+
+
+  
+
+paths:
+  /colecoes:
+    post:
+      summary: Cria uma nova coleção de músicas
+      tags:
+        - colecoes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Colecao'
+      responses:
+        201:
+          description: Coleção criada com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Colecao'
+        422:
+          description: Dados da coleção inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+
+    get:
+      summary: Retorna todas as coleções de músicas
+      tags:
+        - colecoes
+      responses:
+        200:
+          description: Lista de todas as coleções
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfColecoes'
+        404:
+          description: Coleções não encontradas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        400:
+          description: Requisição inválida
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+      security: 
+        - JWTAuth: []
+
+  /colecoes/{id}:
+    get:
+      summary: Retorna uma coleção de músicas pelo ID
+      tags:
+        - colecoes
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID da coleção
+      responses:
+        200:
+          description: Coleção encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Colecao'
+        404:
+          description: Coleção não encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        400:
+          description: ID inválido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+
+    put:
+      summary: Atualiza uma coleção de músicas pelo ID
+      tags:
+        - colecoes
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID da coleção
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Colecao'
+      responses:
+        200:
+          description: Coleção atualizada com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Colecao'
+        400:
+          description: Requisição inválida
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        404:
+          description: Coleção não encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        422:
+          description: Dados da coleção inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+
+    delete:
+      summary: Remove uma coleção de músicas pelo ID
+      tags:
+        - colecoes
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID da coleção
+      responses:
+        204:
+          description: Coleção removida com sucesso
+        400:
+          description: Requisição inválida
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        404:
+          description: Coleção não encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+
+components:
+  securitySchemes: 
+    JWTAuth: 
+      type: apiKey
+      in: header
+      name: Authorization
+  schemas:
+    ArrayOfColecoes:
+      type: array
+      items:
+        $ref: '#/components/schemas/Colecao'
+    Mensagem:
+      type: object
+      properties:
+        msg:
+          type: string
+    Musica:
+      type: object
+      properties:
+        titulo:
+          type: string
+          description: O título da música
+        artista:
+          type: string
+          description: O artista da música
+      example:
+        titulo: Música 1
+        artista: Artista 1
+    Colecao:
+      type: object
+      required:
+        - nome
+        - autor
+        - musicas
+      properties:
+        nome:
+          type: string
+          description: O nome da coleção
+        autor:
+          type: string
+          description: O autor da coleção
+        musicas:
+          type: array
+          items:
+            $ref: '#/components/schemas/Musica'
+      example:
+        nome: Clássicas
+        autor: Caio
+        musicas:
+          - titulo: Música 1
+            artista: Artista 1
+          - titulo: Música 2
+            artista: Artista 2

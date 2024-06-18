@@ -4,12 +4,6 @@ const validarToken = require('../middlewares/authMiddleware');
 const controllerColecoes = require('../controllers/colecoesController');
 
 
-
-
-
-
-
-
 router.post('/', validarToken, controllerColecoes.validarDados, controllerColecoes.criar);
 
 router.get('/', validarToken, controllerColecoes.listarTodas); 

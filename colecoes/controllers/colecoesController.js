@@ -2,13 +2,6 @@ const mongoose = require('mongoose');
 const Colecao = require('../models/colecoesModel');
 
 
-
-
-
-
-
-
-
 // validarDados: valida dados recebidos em uma requisição antes de realizar qualquer operação com eles, verificando se todos os campos necessários estão presentes, se os tipos de dados estão corretos e se os dados estão dentro dos limites esperados
 async function validarDados(req, res, next) {
     const colecao = new Colecao(req.body);
@@ -67,5 +60,6 @@ async function remover(req, res) {
     await Colecao.findOneAndDelete({ _id: id });
     res.status(204).end();
 }
+
 
 module.exports = { validarDados, criar, listarTodas, buscarPeloId, buscarPorCriterios, atualizar, remover };

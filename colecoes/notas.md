@@ -30,6 +30,13 @@
   - npm run test
 
 
+## Crie o arquivo .env na raiz do projeto:
+
+  - MONGODB_URL=mongodb+srv://usuario:senha@cluster.mongodb.net/nomedobancodados
+  - PORT=3000
+  - SEGREDO=senha
+
+
 ## Modelo BODY DO JSON para criar o Usuário:
 
 {

@@ -1,0 +1,138 @@
+openapi: 3.0.0
+info:
+  title: API Musicas
+  version: 0.0.1
+tags:
+  - musicas
+paths:
+  /musica:
+    post:
+      tags:
+        - musicas
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Musica'
+      responses:
+        201:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Musica'
+        422:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+    get:
+      tags:
+        - musicas
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfMusicas'
+      security:
+        - JWTAuth: []
+  /musicas/{id}:
+    get:
+      tags:
+        - musicas
+      parameters:
+        - in: path
+          type: string
+          name: id
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Musica'
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+    put:
+      tags:
+        - musicas
+      parameters:
+        - in: path
+          type: string
+          name: id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Musica'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Musica'
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        422:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+    delete:
+      tags:
+        - musicas
+      parameters:
+        - in: path
+          type: string
+          name: id
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Musica'
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+components:
+  securitySchemes:
+    JWTAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+  schemas:
+    ArrayOfMusicas:
+      type: array
+      items:
+        $ref: '#/components/schemas/Musica'
+    Musica:
+      type: object
+      properties:
+        titulo:
+          type: string
+        autor:
+          type: string
+        genero:
+          type: string
+    Mensagem:
+      type: object
+      properties:
+        msg:
+          type: string

@@ -6,21 +6,21 @@ const controllerMusica = require('../controllers/controller_musica');
 
 const router = express.Router();
 
-router.post('/', /*validarToken,*/ controllerMusica.validarDados, controllerMusica.criar);
+router.post('/', validarToken, controllerMusica.validarDados, controllerMusica.criar);
 
-router.get('/',validarToken, controllerMusica.obterTodos);
+router.get('/', validarToken, controllerMusica.obterTodos);
 
-router.get('/:id', /*validarToken,*/ controllerMusica.buscarPeloId, controllerMusica.obter);
+router.get('/:id', validarToken, controllerMusica.buscarPeloId, controllerMusica.obter);
 
 router.put(
     "/:id",
-    /*validarToken,*/
+    validarToken,
     controllerMusica.buscarPeloId,
     controllerMusica.validarDados, 
     controllerMusica.atualizar
   );
 
-router.delete ('/:id', controllerMusica.buscarPeloId, controllerMusica.remover);
+router.delete ('/:id', validarToken, controllerMusica.buscarPeloId, controllerMusica.remover);
   
 
 module.exports = router;

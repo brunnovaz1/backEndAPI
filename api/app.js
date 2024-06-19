@@ -2,24 +2,39 @@
 var express = require('express');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-require('dotenv').config()
+const mongoose = require('mongoose');
+require('dotenv').config();
 
-var app = express();
 
+// Importação dos roteadores
+const routerSwagger = require('./routes/swaggerRouter');
+const routerColecoes = require('./routes/colecoesRouter');
+const usersRouter = require('./routes/usersRouter')
+var routesApiMusica = require('./routes/routes_api-musica');
+var routesMusica = require('./routes/routes_musica');
 var routerApidocs = require('./routes/router_apidocs');
 var routerArtista = require('./routes/router_artista');
+var app = express();
 
-const url = process.env.MONGODB_URL
 
-const mongoose = require('mongoose')
-mongoose.connect(process.env.MONGODB_URL)
+// Conexão com o banco de dados MongoDB
+mongoose.connect(process.env.MONGODB_URL);
 
+// Middlewares
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+
+// Roteadores
+app.use('/swagger', routerSwagger); // Roteador para documentação da API
+app.use('/colecoes', routerColecoes); // Roteador para manipulação de coleções
+app.use('/users', usersRouter);
+app.use('/api-musica', routesApiMusica);
+app.use('/musica', routesMusica);
 app.use('/api-docs', routerApidocs);
 app.use('/artista', routerArtista);
+
 
 module.exports = app;

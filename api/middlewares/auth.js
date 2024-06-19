@@ -14,6 +14,10 @@ function validarToken(req, res, next) {
     }
 }
 
+<<<<<<< HEAD
+module.exports = validarToken
+=======
 
 
 module.exports = validarToken;
+>>>>>>> 99f50dfa0f8ed3ace5268360a80d73dd24141ebc

@@ -1,15 +1,125 @@
 openapi: 3.0.0
 info:
-  title: API de Coleções de Músicas
-  version: 0.0.1
-  description: API para gerenciar coleções de músicas
-servers:
-  - url: http://localhost:3000  
+  title: API Artistas
+  version: 1.0
 tags:
-  - musicas
-  - colecoes
+  - artista
 paths:
-  /colecoes:
+  /artista:
+    post:
+      tags:
+        - artista
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Artista'
+      responses:
+        201:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Artista'
+        422:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+      security:
+        - JWTAuth: []          
+    get:
+      tags:
+        - artista
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfArtistas'
+      security:
+        - JWTAuth: []
+  /artista/{id}:
+    get:
+      tags:
+        - artista
+      parameters:
+        - in: path
+          type: string
+          name: id
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Artista'
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+      security:
+        - JWTAuth: []          
+    put:
+      tags:
+        - artista
+      parameters:
+        - in: path
+          type: string
+          name: id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Artista'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Artista'
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        422:
+          content:
+            appication/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+      security:
+        - JWTAuth: []
+    delete:
+      tags:
+        - artista
+      parameters:
+        - in: path
+          type: string
+          name: id
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Artista'
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+      security:
+        - JWTAuth: []
+ /colecoes:
     post:
       summary: Cria uma nova coleção de músicas
       tags:
@@ -274,15 +384,31 @@ paths:
               schema:
                 $ref: '#/components/schemas/Mensagem'
       security:
-        - JWTAuth: []
+        - JWTAuth: []    
 components:
-  securitySchemes: 
-    JWTAuth: 
+  securitySchemes:
+    JWTAuth:
       type: apiKey
       in: header
       name: Authorization
   schemas:
-    ArrayOfColecoes:
+    ArrayOfArtistas:
+      type: array
+      items:
+        $ref: '#/components/schemas/Artista'
+    Artista:
+      type: object
+      properties:
+        autor:
+          type: string
+        genero:
+          type: string
+    Mensagem:
+      type: object
+      properties:
+        msg:
+          type: string
+ArrayOfColecoes:
       type: array
       items:
         $ref: '#/components/schemas/Colecao'
@@ -341,8 +467,4 @@ components:
           type: string
         genero:
           type: string
-    Mensagem:
-      type: object
-      properties:
-        msg:
-          type: string
+    

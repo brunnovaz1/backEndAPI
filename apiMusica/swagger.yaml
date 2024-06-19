@@ -38,7 +38,7 @@ paths:
                 $ref: '#/components/schemas/ArrayOfMusicas'
       security:
         - JWTAuth: []
-  /musicas/{id}:
+  /musica/{id}:
     get:
       tags:
         - musicas

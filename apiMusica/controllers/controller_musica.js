@@ -18,8 +18,8 @@ async function criar(req, res) {
 }
 
 async function obterTodos(req, res) {
-    const musicas = await Musica.find({})
-    res.json(musicas)
+    const musica = await Musica.find({})
+    res.json(musica)
 }
 
 async function buscarPeloId(req, res, next){
